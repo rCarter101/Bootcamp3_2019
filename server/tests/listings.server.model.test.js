@@ -58,6 +58,17 @@ describe('Listing Schema Unit Tests', function() {
         done();
       });
     });
+    it('can be found after saving', function(done){
+      new Listing(listing).save(function(err, listing){
+        should.not.exist(err);
+        id = listing._id;
+      });
+      var temp = Listing.findOne({ code: 'LBWEST' }, function(err, stuff){
+        should.not.exist(err);
+        should.exist(stuff);
+        done()
+      });
+    });
 
     it('throws an error when name not provided', function(done){
       new Listing({

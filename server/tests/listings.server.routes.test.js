@@ -116,7 +116,7 @@ describe('Listings CRUD tests', function() {
   You can comment the two coordinate tests until you have completed the code the 
   coordinates.server.controlelr.js file 
 */
-  it('should be able to save a listing with coordinates', function(done) {
+/*  it('should be able to save a listing with coordinates', function(done) {
     var listing2 = {
       code: 'GMC', 
       name: 'Dr. Gardner-McCunes Office', 
@@ -136,9 +136,9 @@ describe('Listings CRUD tests', function() {
         id2 = res.body._id;
         done();
       });
-  });
+  });*/
 
-  it('should be able to delete the listing with coordinates', function(done) {
+ /* it('should be able to delete the listing with coordinates', function(done) {
     agent.delete('/api/listings/' + id2)
       .expect(200)
       .end(function(err, res) {
@@ -151,7 +151,7 @@ describe('Listings CRUD tests', function() {
             done();
           });
       })
-  });
+  });*/
 
   after(function(done) {
     if(id) {

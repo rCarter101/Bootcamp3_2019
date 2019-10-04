@@ -56,19 +56,30 @@ exports.read = function(req, res) {
 /* Update a listing - note the order in which this function is called by the router*/
 exports.update = function(req, res) {
   var listing = req.listing;
-
+  Listing.findById(listing, function(err, stuff){
+    stuff.name = req.body.name;
+    stuff.code = req.body.code;
+    stuff.address = req.body.address;
+    stuff.coordinates = req.results;
+    stuff.save(function (err) {
+      if (err)
+        res.status(400).send(err);
+      res.json(stuff);
+    });
+  });
+  //console.log(req.body);
   /* Replace the listings's properties with the new properties found in req.body */
  
   /*save the coordinates (located in req.results if there is an address property) */
  
   /* Save the listing */
-
 };
 
 /* Delete a listing */
 exports.delete = function(req, res) {
   var listing = req.listing;
-
+  Listing.deleteOne(listing);
+  res.json();
   /* Add your code to remove the listins */
 
 };
@@ -76,6 +87,10 @@ exports.delete = function(req, res) {
 /* Retreive all the directory listings, sorted alphabetically by listing code */
 exports.list = function(req, res) {
   /* Add your code */
+     var temp = Listing.find(function(err, stuff){
+    if (err) throw err;
+    res.json(stuff);
+   });
 };
 
 /* 
